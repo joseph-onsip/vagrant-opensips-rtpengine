@@ -88,5 +88,11 @@ Vagrant.configure(2) do |config|
     # install unlisted build dependencies
     sudo apt-get install -y debhelper iptables-dev markdown
     dpkg-buildpackage
+    sudo dpkg --purge ngcp-rtpengine{,-daemon,-iptables,-kernel-dkms}
+    sudo apt-get install -y linux-headers-3.2.0-4-amd64 # needed for ngcp-rtpengine-kernel-dkms
+    sudo dpkg -i /home/vagrant/ngcp-rtpengine-kernel-dkms_4.0.0.0+0~mr4.0.0.0_all.deb
+    sudo dpkg -i /home/vagrant/ngcp-rtpengine-iptables_4.0.0.0+0~mr4.0.0.0_amd64.deb
+    sudo dpkg -i /home/vagrant/ngcp-rtpengine-daemon_4.0.0.0+0~mr4.0.0.0_amd64.deb
+    sudo dpkg -i /home/vagrant/ngcp-rtpengine_4.0.0.0+0~mr4.0.0.0_all.deb
   SHELL
 end
