@@ -74,5 +74,19 @@ Vagrant.configure(2) do |config|
     sudo wget -qO - http://apt.opensips.org/key.asc | apt-key add -
     sudo apt-get update
     sudo apt-get install -y opensips
+
+    # install rtpengine from the rfuchs/socket-rework branch
+    sudo apt-get install -y git
+    rm -rf rtpengine
+    git clone https://github.com/sipwise/rtpengine.git
+    cd rtpengine
+    git checkout 16e5df722fe281170ded0a419c686c069821e859
+    ./debian/flavors/no_ngcp
+    # install build dependencies
+    # https://github.com/sipwise/rtpengine/tree/16e5df722fe281170ded0a419c686c069821e859#manual-compilation
+    sudo apt-get install -y build-essential pkg-config libglib2.0-dev zlib1g-dev libssl-dev libpcre3-dev libcurl4-openssl-dev libxmlrpc-core-c3-dev
+    # install unlisted build dependencies
+    sudo apt-get install -y debhelper iptables-dev markdown
+    dpkg-buildpackage
   SHELL
 end
