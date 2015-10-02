@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "debian/jessie64"
+  config.vm.box = "debian/wheezy64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
     set -o errexit
 
     # install OpenSIPS 1.10 as shown on http://apt.opensips.org/
-    sudo echo > /etc/apt/sources.list.d/opensips.list "deb http://apt.opensips.org/debian/stable-1.10/jessie opensips-1.10-jessie main"
+    sudo echo > /etc/apt/sources.list.d/opensips.list "deb http://apt.opensips.org/debian/stable-1.10/wheezy opensips-1.10-wheezy main"
     # no https :(
     sudo wget -qO - http://apt.opensips.org/key.asc | apt-key add -
     sudo apt-get update
