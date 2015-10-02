@@ -65,6 +65,9 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+    # http://www.davidpashley.com/articles/writing-robust-shell-scripts/
+    set -o errexit
+
     # install OpenSIPS 1.10 as shown on http://apt.opensips.org/
     sudo echo > /etc/apt/sources.list.d/opensips.list "deb http://apt.opensips.org/debian/stable-1.10/jessie opensips-1.10-jessie main"
     # no https :(
